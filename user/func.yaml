@@ -1,0 +1,7 @@
+name: user
+version: 0.0.131
+runtime: docker
+cmd: io.thundra.fn.demo.user.UserFunction::handleRequest
+build_image: fnproject/fn-java-fdk-build:latest
+run_image: fnproject/fn-java-fdk:latest
+format: default

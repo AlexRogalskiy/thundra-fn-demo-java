@@ -1,0 +1,7 @@
+name: hello
+version: 0.0.157
+runtime: docker
+cmd: io.thundra.fn.demo.hello.HelloFunction::handleRequest
+build_image: fnproject/fn-java-fdk-build:latest
+run_image: fnproject/fn-java-fdk:latest
+format: default

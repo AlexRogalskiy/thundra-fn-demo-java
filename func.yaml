@@ -1,7 +1,0 @@
-name: thundra-fn-demo-java
-version: 0.0.7
-runtime: docker
-cmd: io.thundra.fn.demo.HelloFunction::handleRequest
-build_image: fnproject/fn-java-fdk-build:latest
-run_image: fnproject/fn-java-fdk:latest
-format: default

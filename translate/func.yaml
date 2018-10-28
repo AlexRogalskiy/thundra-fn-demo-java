@@ -1,0 +1,7 @@
+name: translate
+version: 0.0.71
+runtime: docker
+cmd: io.thundra.fn.demo.translate.TranslateFunction::handleRequest
+build_image: fnproject/fn-java-fdk-build:latest
+run_image: fnproject/fn-java-fdk:latest
+format: default

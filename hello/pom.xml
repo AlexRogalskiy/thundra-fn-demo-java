@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.thundra.fn.demo</groupId>
+    <artifactId>hello</artifactId>
+    <version>1.0.0</version>
+
+    <properties>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <fdk.version>1.0.64</fdk.version>
+        <apache.httpclient.version>4.5.3</apache.httpclient.version>
+
+        <thundra.agent.version>2.0.0</thundra.agent.version>
+        <thundra.agent.fn.version>2.0.0</thundra.agent.fn.version>
+
+    </properties>
+
+    <dependencies>
+
+        <!-- FN-Project dependencies                    -->
+        <!-- ========================================== -->
+        <dependency>
+            <groupId>com.fnproject.fn</groupId>
+            <artifactId>api</artifactId>
+            <version>${fdk.version}</version>
+        </dependency>
+        <!-- ========================================== -->
+
+        <!-- 3rd party dependencies                     -->
+        <!-- ========================================== -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${apache.httpclient.version}</version>
+        </dependency>
+        <!-- ========================================== -->
+
+        <!-- Thundra FN dependencies                    -->
+        <!-- ========================================== -->
+        <dependency>
+            <groupId>io.thundra.agent</groupId>
+            <artifactId>thundra-agent-fn-core</artifactId>
+            <version>${thundra.agent.fn.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.thundra.agent</groupId>
+            <artifactId>thundra-agent-fn-trace</artifactId>
+            <version>${thundra.agent.fn.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.thundra.agent</groupId>
+            <artifactId>thundra-agent-fn-metric</artifactId>
+            <version>${thundra.agent.fn.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.thundra.agent</groupId>
+            <artifactId>thundra-agent-fn-log</artifactId>
+            <version>${thundra.agent.fn.version}</version>
+        </dependency>
+        <!-- ========================================== -->
+
+        <!-- Thundra dependencies                       -->
+        <!-- ========================================== -->
+        <dependency>
+            <groupId>io.thundra.agent</groupId>
+            <artifactId>thundra-agent-trace-instrument</artifactId>
+            <version>${thundra.agent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.thundra.agent</groupId>
+            <artifactId>thundra-agent-trace-instrument-integrations-http-apache-httpclient</artifactId>
+            <version>${thundra.agent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.thundra.agent</groupId>
+            <artifactId>thundra-agent-log-integrations-log4j1</artifactId>
+            <version>${thundra.agent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.thundra.agent</groupId>
+            <artifactId>thundra-agent-trace-instrument-metadatagen</artifactId>
+            <version>${thundra.agent.version}</version>
+        </dependency>
+        <!-- ========================================== -->
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                    <transformers>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                    </transformers>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>thundra-releases</id>
+            <name>Thundra Releases</name>
+            <url>http://repo.thundra.io/content/repositories/thundra-releases</url>
+        </repository>
+        <repository>
+            <id>fn-release-repo</id>
+            <url>https://dl.bintray.com/fnproject/fnproject</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+</project>
